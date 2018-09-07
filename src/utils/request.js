@@ -76,23 +76,26 @@ function request(url, options) {
  * @param options
  * @returns {*}
  */
-function proxyRequest(url, options) {
+function proxyRequest(url, options, showError = true) {
   options = options || {};
   return request(url, options).then((response) => {
     if (response.code === 0) {
       return response.data || {};
     }
-    notification.error({
-      message: response.data.message || 'system error',
-    });
+    console.log('serr', showError);
+    if (showError) {
+      notification.error({
+        message: response.data.message || 'system error',
+      });
+    }
     const e = new Error();
     e.code = response.code;
     e.message = response.message || `Failed to get data code : ${e.code}`;
     throw e;
   }).catch((e) => {
-    notification.error({
-      message: 'system error',
-    });
+    // notification.error({
+    //   message: 'system error',
+    // });
   });
 }
 
@@ -102,11 +105,22 @@ function proxyRequest(url, options) {
  * @param options
  * @returns {*}
  */
-proxyRequest.get = (url, data, options) => {
+proxyRequest.get = (url, data, options, showError) => {
   options = options || {};
   url = data ? `${url}?${qsStringify(data)}` : url;
-  return proxyRequest(url, options);
+  return proxyRequest(url, options, showError);
 };
+
+/**
+ * 接口错误不在右侧弹出提示
+ * @param {*} url
+ * @param {*} data
+ * @param {*} options
+ */
+proxyRequest.getD = (url, data, options) => {
+  return proxyRequest.get(url, data, options, false);
+};
+
 /**
  *
  * @param url
@@ -114,11 +128,21 @@ proxyRequest.get = (url, data, options) => {
  * @param options
  * @returns {*}
  */
-proxyRequest.post = (url, data, options) => {
+proxyRequest.post = (url, data, options, showError) => {
   options = options || {};
   options.body = data || {};
   options.method = 'POST';
-  return proxyRequest(url, options);
+  return proxyRequest(url, options, showError);
+};
+
+/**
+ * 接口错误不在右侧弹出提示
+ * @param {*} url
+ * @param {*} data
+ * @param {*} options
+ */
+proxyRequest.postD = (url, data, options) => {
+  return proxyRequest.post(url, data, options, false);
 };
 
 /**
@@ -131,7 +155,6 @@ proxyRequest.post = (url, data, options) => {
 proxyRequest.put = (url, data, options) => {
   options = options || {};
   options.body = data || {};
-  console.log('dffefe', data);
   options.method = 'PUT';
   return proxyRequest(url, options);
 };
