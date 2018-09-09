@@ -1,13 +1,24 @@
 import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
-import styles from './index.less';
+import styles from './baseLayout.less';
 import MenuComponent from './menu';
+import HeaderComponent from './header';
+import router from 'umi/router';
+import { checkLogin } from '../init';
 const { Header, Content, Footer, Sider } = Layout;
 
 class BaseLayout extends React.Component {
-  state = {
-    collapsed: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      collapsed: false,
+    }
+    // 检测是否登录
+    const isLogin  = checkLogin();
+    if (!isLogin) {
+      router.push('login');
+    }
+  }
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
@@ -26,7 +37,9 @@ class BaseLayout extends React.Component {
           <MenuComponent />
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
+          <Header style={{ background: '#fff', padding: 0 }}>
+            <HeaderComponent />
+          </Header>
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>

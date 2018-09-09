@@ -82,7 +82,6 @@ function proxyRequest(url, options, showError = true) {
     if (response.code === 0) {
       return response.data || {};
     }
-    console.log('serr', showError);
     if (showError) {
       notification.error({
         message: response.data.message || 'system error',
