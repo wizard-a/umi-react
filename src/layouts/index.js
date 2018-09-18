@@ -15,7 +15,7 @@ export class Index extends Component {
       </React.Fragment>;
     }
     return (
-      <BaseLayout />
+      <BaseLayout {...this.props} />
     );
   }
 }
