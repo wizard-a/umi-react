@@ -41,7 +41,7 @@ export default {
           payload: {},
         })
         storage.remove('user');
-        router.push('login');
+        router.push('/login');
       }
     },
   },
