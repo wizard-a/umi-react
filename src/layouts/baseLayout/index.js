@@ -4,7 +4,9 @@ import styles from './baseLayout.less';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
 import router from 'umi/router';
+import intl from 'react-intl-universal';
 import { checkLogin } from '../init';
+import locales from '../../locales';
 const { Header, Content, Footer, Sider } = Layout;
 
 class BaseLayout extends React.Component {
@@ -12,12 +14,28 @@ class BaseLayout extends React.Component {
     super();
     this.state = {
       collapsed: false,
+      initDone: false,
     }
     // 检测是否登录
     const isLogin  = checkLogin();
     if (!isLogin) {
       router.push('login');
     }
+  }
+
+  componentDidMount = () => {
+    this.loadLocales();
+  }
+
+  loadLocales() {
+    intl.init({
+      currentLocale: 'en-US', // TODO: determine locale here
+      locales,
+    })
+    .then(() => {
+      // After loading CLDR locale data, start to render
+	    this.setState({initDone: true});
+    });
   }
 
   onCollapse = (collapsed) => {

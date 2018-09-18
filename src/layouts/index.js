@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react'
 import BaseLayout from './baseLayout';
 import { init } from './init';
 
-export default function(props) {
-  init();
-  const {location: {pathname}} = props;
-  if (pathname === '/login') {
-    return <React.Fragment>
-      {props.children}
-    </React.Fragment>;
+export class Index extends Component {
+  constructor() {
+    super();
+    init();
   }
-  return (
-    <BaseLayout />
-  );
+  render() {
+    const {location: {pathname}, children} = this.props;
+    if (pathname === '/login') {
+      return <React.Fragment>
+        {children}
+      </React.Fragment>;
+    }
+    return (
+      <BaseLayout />
+    );
+  }
 }
+
+export default Index;
