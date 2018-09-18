@@ -1,22 +1,55 @@
 import React, { Component } from 'react'
 import BaseLayout from './baseLayout';
+import { LocaleProvider } from 'antd';
+import { connect } from 'dva';
+import zh_CN from 'antd/lib/locale-provider/zh_CN';
+import en_US from 'antd/lib/locale-provider/en_US';
 import { init } from './init';
 
-export class Index extends Component {
+@connect(({global}) => {
+  return {
+    currLocale: global.currLocale,
+    localeLoad: global.localeLoad,
+  }
+})
+class Index extends Component {
   constructor() {
     super();
     init();
+    this.state = {
+      initDone: false,
+    }
   }
-  render() {
-    const {location: {pathname}, children} = this.props;
+
+  componentDidMount() {
+    const {dispatch, currLocale} = this.props;
+    // 更改国际化
+    dispatch({
+      type: 'global/changeLocale',
+      payload: currLocale,
+    });
+  }
+
+  renderBody = () => {
+    const {location: {pathname}, children, currLocale, localeLoad } = this.props;
     if (pathname === '/login') {
-      return <React.Fragment>
+      return localeLoad && <React.Fragment>
         {children}
       </React.Fragment>;
     }
     return (
-      <BaseLayout {...this.props} />
+      localeLoad && (<LocaleProvider locale={ currLocale === 'zh_CN' ? zh_CN : en_US }>
+        <BaseLayout {...this.props} />
+      </LocaleProvider>)
     );
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        {this.renderBody()}
+      </React.Fragment>
+    )
   }
 }
 

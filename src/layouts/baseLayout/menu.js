@@ -1,34 +1,23 @@
 import React from 'react';
-import { connect } from 'dva';
 import { Menu, Icon } from 'antd';
 import router from 'umi/router';
 
 const SubMenu = Menu.SubMenu;
 
-@connect(({auth}) => {
-  return {
-    menu: auth.menu,
-  }
-})
 class MenuComponent extends React.Component {
-
-  componentDidMount() {
-    // 获取 menu 数据
-    this.props.dispatch({
-      type: 'auth/getMenu',
-    })
-  }
 
   link = (url) => {
     router.push(url);
   }
 
   renderMenu = (data) => {
+    const {currLocale} = this.props;
     return data && data.map(d => {
+      const name = currLocale === 'zh_CN' ? d.name : d.enName;
       if (d.children && d.children.length > 0) {
         return <SubMenu
           key={d.id}
-          title={<span><Icon type={d.icon} /><span>{d.name}</span></span>}
+          title={<span><Icon type={d.icon} /><span>{name}</span></span>}
         >
           {this.renderMenu(d.children)}
         </SubMenu>
@@ -39,7 +28,7 @@ class MenuComponent extends React.Component {
             onClick={() => {this.link(d.url)}}
           >
             <Icon type={d.icon} />
-            <span>{d.name}</span>
+            <span>{name}</span>
         </Menu.Item>
       )
     });
@@ -50,7 +39,8 @@ class MenuComponent extends React.Component {
     return (
       <Menu theme='dark'
         defaultSelectedKeys={['1']}
-        mode='inline'>
+        mode='inline'
+      >
         {
           this.renderMenu(menu)
         }

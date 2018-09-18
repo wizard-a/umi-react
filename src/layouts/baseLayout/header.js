@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { Avatar, Dropdown, Menu, Switch, Icon } from 'antd';
+import { Avatar, Dropdown, Menu, Icon, Select } from 'antd';
 import { connect } from 'dva';
+import intl from 'react-intl-universal';
 import styles from './baseLayout.less';
 
-@connect()
+const Option = Select.Option;
+
+@connect(({user}) => {
+  return {
+    user: user.user
+  }
+})
 class Header extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+
+    }
+  }
 
   /**
    * 退出登录
@@ -15,13 +29,24 @@ class Header extends Component {
     })
   }
 
+  /**
+   * 切换语言
+   */
+  onLocaleChange = (value) => {
+    this.props.dispatch({
+      type: 'global/changeLocale',
+      payload: value,
+    })
+  }
+
   render() {
+    const {currLocale, user} = this.props;
     const menu =  (
       <Menu>
         <Menu.Item>
           <span onClick={this.logout}>
-            <Icon type="logout" theme="outlined" />
-            <span style={{ marginLeft: '10px' }}>退出登录</span>
+            <Icon type='logout' theme='outlined' />
+            <span style={{ marginLeft: '10px' }}>{intl.get('user.logout')}</span>
           </span>
         </Menu.Item>
       </Menu>
@@ -30,12 +55,18 @@ class Header extends Component {
       <div className={styles.header}>
         <Dropdown overlay={menu} placement='bottomCenter'>
           <div className={styles.headerButton}>
-            <Avatar icon="user" />
-            <span className={styles.headerUser}>admin</span>
+            <Avatar icon='user' />
+            <span className={styles.headerUser}>{user.name}</span>
           </div>
         </Dropdown>
         <div className={styles.headerButton}>
-          <Switch checkedChildren="EN" unCheckedChildren="ZH" defaultChecked />
+          <Select
+            defaultValue={currLocale}
+            style={{ width: 100 }}
+            onChange={this.onLocaleChange}>
+            <Option value='zh_CN'>中文</Option>
+            <Option value='en_US'>English</Option>
+          </Select>
         </div>
       </div>
     )

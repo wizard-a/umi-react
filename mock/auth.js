@@ -8,18 +8,21 @@ const menu = [
   {
     id: 1,
     name: '概览',
+    enName: 'Dashboard',
     icon: 'dashboard',
     url: '/dashboard',
   },
   {
     id: 2,
     name: '系统管理',
+    enName: 'System',
     icon: 'setting',
     url: '/system',
     children: [
       {
         id: 21,
         name: '用户管理',
+        enName: 'User',
         icon: 'user',
         url: '/system/user',
       }

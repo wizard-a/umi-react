@@ -1,14 +1,19 @@
 import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
+import { connect } from 'dva';
 import styles from './baseLayout.less';
 import MenuComponent from './menu';
 import HeaderComponent from './header';
 import router from 'umi/router';
-import intl from 'react-intl-universal';
 import { checkLogin } from '../init';
-import locales from '../../locales';
 const { Header, Content, Footer, Sider } = Layout;
 
+@connect(({auth, global}) => {
+  return {
+    menu: auth.menu,
+    currLocale: global.currLocale,
+  }
+})
 class BaseLayout extends React.Component {
   constructor() {
     super();
@@ -19,23 +24,15 @@ class BaseLayout extends React.Component {
     // 检测是否登录
     const isLogin  = checkLogin();
     if (!isLogin) {
-      router.push('login');
+      router.push('/login');
     }
   }
 
   componentDidMount = () => {
-    this.loadLocales();
-  }
-
-  loadLocales() {
-    intl.init({
-      currentLocale: 'en-US', // TODO: determine locale here
-      locales,
+    // 获取 menu 数据
+    this.props.dispatch({
+      type: 'auth/getMenu',
     })
-    .then(() => {
-      // After loading CLDR locale data, start to render
-	    this.setState({initDone: true});
-    });
   }
 
   onCollapse = (collapsed) => {
@@ -43,7 +40,15 @@ class BaseLayout extends React.Component {
     this.setState({ collapsed });
   }
 
+  changeLoacle = (locale) => {
+    this.props.dispatch({
+      type: 'global/changeLocale',
+      payload: locale,
+    });
+  }
+
   render() {
+    const { menu, currLocale } = this.props;
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -52,11 +57,11 @@ class BaseLayout extends React.Component {
           onCollapse={this.onCollapse}
         >
           <div className={styles.logo} />
-          <MenuComponent />
+          <MenuComponent currLocale={currLocale} menu={menu} />
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <HeaderComponent />
+            <HeaderComponent currLocale={currLocale} />
           </Header>
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
