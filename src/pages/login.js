@@ -22,7 +22,6 @@ class Login extends React.Component {
       }
     });
   }
-
   render() {
     const { loginErr, form:{ getFieldDecorator } } = this.props;
     const intlLogin = intl.get('user.login.loginBtn');
@@ -76,6 +75,4 @@ class Login extends React.Component {
     );
   }
 }
-
-
 export default Login;

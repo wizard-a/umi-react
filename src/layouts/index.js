@@ -30,6 +30,9 @@ class Index extends Component {
     });
   }
 
+  /**
+   * 初始intl国际化和antd组件国际化
+   */
   renderBody = () => {
     const {location: {pathname}, children, currLocale, localeLoad } = this.props;
     if (pathname === '/login') {
