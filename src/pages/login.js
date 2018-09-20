@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import FormValid from 'utils/FormValid';
-import { Form, Icon, Input, Button, Checkbox, Alert } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Alert, Row, Col } from 'antd';
 import intl from 'react-intl-universal';
 import styles from './login.less';
 const FormItem = Form.Item;
@@ -69,6 +69,18 @@ class Login extends React.Component {
             <Button type='primary' htmlType='submit' className='login-form-button'>
               {intlLogin}
             </Button>
+            <div>
+              <Row>
+                  <Col span={8}>管理员：</Col>
+                  <Col span={8}>admin</Col>
+                  <Col span={8}>123456</Col>
+              </Row>
+              <Row>
+                  <Col span={8}>普通用户：</Col>
+                  <Col span={8}>user</Col>
+                  <Col span={8}>123456</Col>
+              </Row>
+            </div>
           </FormItem>
         </Form>
       </div>

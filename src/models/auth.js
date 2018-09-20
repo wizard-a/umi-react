@@ -10,7 +10,8 @@ export default {
 
   effects: {
     *getMenu(_, { put, select, call }) {
-      const menu = yield call(getMenu);
+      const {name} = yield select(s => s.user.user);
+      const menu = yield call(getMenu, name);
       yield put({
         type: 'setMenu',
         payload: menu,

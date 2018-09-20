@@ -4,7 +4,7 @@ const responseJson = (data) => {
     data
   }
 }
-const menu = [
+const adminMenu = [
   {
     id: 1,
     name: '概览',
@@ -14,26 +14,75 @@ const menu = [
   },
   {
     id: 2,
+    name: '大表格渲染',
+    enName: 'Table',
+    icon: 'table',
+    url: '/table',
+  },
+  {
+    id: 3,
+    name: '图表',
+    enName: 'chart',
+    icon: 'bar-chart',
+    url: '/chart',
+  },
+  {
+    id: 4,
     name: '系统管理',
     enName: 'System',
     icon: 'setting',
     url: '/system',
     children: [
       {
-        id: 21,
+        id: 41,
         name: '用户管理',
         enName: 'User',
         icon: 'user',
         url: '/system/user',
+      },
+      {
+        id: 42,
+        name: '消息中心',
+        enName: 'Message',
+        icon: 'message',
+        url: '/system/message',
       }
     ]
   },
 ];
 
+
+const userMenu = [
+  {
+    id: 1,
+    name: '概览',
+    enName: 'Dashboard',
+    icon: 'dashboard',
+    url: '/dashboard',
+  },
+  {
+    id: 2,
+    name: '大表格渲染',
+    enName: 'Table',
+    icon: 'table',
+    url: '/table',
+  },
+  {
+    id: 3,
+    name: '图表',
+    enName: 'chart',
+    icon: 'bar-chart',
+    url: '/chart',
+  },
+];
+
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/menu': (req, res) => {
+  'GET /api/menu/:usreName': (req, res) => {
     setTimeout(() => {
+      // console.log(req);
+      const {usreName} = req.params;
+      const menu = usreName === 'admin' ? adminMenu : userMenu;
       res.send(responseJson(menu));
     }, 300);
   },
