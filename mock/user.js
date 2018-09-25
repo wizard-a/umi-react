@@ -18,7 +18,7 @@ export default {
     const { name, password } = req.body;
     if (users.some(u => u === name) && password === '123456') {
       setTimeout(() => {
-        res.send(responseJson({id: 1, name: 'admin'}));
+        res.send(responseJson({id: 1, name}));
       }, 300);
     } else {
       setTimeout(() => {

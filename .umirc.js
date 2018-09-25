@@ -18,7 +18,7 @@ export default {
       },
       dll: {
         exclude: [],
-        include: ['dva', "dva/router", "dva/saga", "dva/fetch", "antd/es", 'lodash'],
+        // include: ['dva', "dva/router", "dva/saga", "dva/fetch", "antd/es", 'lodash'],
       },
       hardSource: true,
     }],

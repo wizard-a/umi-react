@@ -27,7 +27,7 @@ class MenuComponent extends React.Component {
             key={d.id}
             onClick={() => {this.link(d.url)}}
           >
-            <Icon type={d.icon} />
+            {d.icon && <Icon type={d.icon} />}
             <span>{name}</span>
         </Menu.Item>
       )

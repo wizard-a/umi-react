@@ -18,6 +18,17 @@ const adminMenu = [
     enName: 'Table',
     icon: 'table',
     url: '/table',
+    children: [{
+      id: 21,
+      name: '基础列表',
+      enName: 'Basic Table',
+      url: '/table/basic',
+    }, {
+      id: 22,
+      name: '大列表',
+      enName: 'Big Table',
+      url: '/table/big',
+    }],
   },
   {
     id: 3,
@@ -37,14 +48,12 @@ const adminMenu = [
         id: 41,
         name: '用户管理',
         enName: 'User',
-        icon: 'user',
         url: '/system/user',
       },
       {
         id: 42,
         name: '消息中心',
         enName: 'Message',
-        icon: 'message',
         url: '/system/message',
       }
     ]
@@ -62,10 +71,21 @@ const userMenu = [
   },
   {
     id: 2,
-    name: '大表格渲染',
+    name: '列表',
     enName: 'Table',
     icon: 'table',
     url: '/table',
+    children: [{
+      id: 21,
+      name: '基础列表',
+      enName: 'Basic Table',
+      url: '/table/basic',
+    }, {
+      id: 22,
+      name: '大列表',
+      enName: 'Big Table',
+      url: '/table/big',
+    }],
   },
   {
     id: 3,
