@@ -30,6 +30,7 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "react-intl-universal": "^1.12.2"
+    "react-intl-universal": "^1.12.2",
+    "react-virtualized": "^9.20.1"
   }
 }
