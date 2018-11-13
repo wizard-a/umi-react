@@ -30,7 +30,8 @@ class ListDemo extends React.Component {
 
   onSearch = (value) => {
     console.log('value', value);
-    console.log(this.ifLoader);
+    window.registerChild = this.ifLoader;
+    console.log('_registeredChild', this.ifLoader.current._registeredChild);
     this.loadedRowsMap = {};
     this.props.dispatch({
       type: 'tableList/clearData'

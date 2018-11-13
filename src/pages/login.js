@@ -35,6 +35,7 @@ class Login extends React.Component {
         <Form onSubmit={this.handleSubmit} className='login-form'>
           <FormItem>
             {getFieldDecorator('name', {
+              initialValue: 'admin',
               rules: [
                 FormValid.require(intlUsername),
               ],
@@ -47,6 +48,7 @@ class Login extends React.Component {
           </FormItem>
           <FormItem>
             {getFieldDecorator('password', {
+              initialValue: '123456',
               rules: [
                 FormValid.require(intlPwd),
               ],
