@@ -22,8 +22,8 @@
 - [ ] ....(后续补充)
 
 ### 教程
-1. (框架搭建)[https://github.com/jiechud/umi-react/blob/master/doc/2.框架搭建.md]
-2. (国际化)[https://github.com/jiechud/umi-react/blob/master/doc/2.%E5%9B%BD%E9%99%85%E5%8C%96.md]
+1. [框架搭建](https://github.com/jiechud/umi-react/blob/master/doc/1.框架搭建.md)
+2. [国际化](https://github.com/jiechud/umi-react/blob/master/doc/2.%E5%9B%BD%E9%99%85%E5%8C%96.md)
 
 ### 启动
 
