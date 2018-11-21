@@ -13,17 +13,32 @@ const time = (fun) => {
 
 export default {
   'GET /api/table/list': (req, res) => {
-    const { pageNum, pageIndex, keyworks } = req.query;
+    const { pageNum, pageIndex, search } = req.query;
     const result = [];
     for (let i = 0; i < pageNum; i++) {
-      const name = `${keyworks !== '' ? 'lisi' : 'zhangsan'}${(pageIndex - 1) * pageNum + i }`;
+      const idx = (pageIndex - 1) * pageNum + i + 1;
+      const name = `${search !== '' ? 'lisi' : 'zhangsan'}${idx}`;
       result.push({
+        id: idx,
         name,
         email: `${name}@163.com`,
+        createTime: new Date(),
       });
     }
     time(() => {
-      res.send(responseJson(result));
+      res.send(responseJson({
+        rows: result,
+        count: 25,
+      }));
     })
   },
+  'POST /api/table': (req, res) => {
+    res.send(responseJson('添加成功!'));
+  },
+  'PUT /api/table/:id': (req, res) => {
+    res.send(responseJson('编辑成功!'));
+  },
+  'DELETE /api/table/:id': (req, res) => {
+    res.send(responseJson('删除成功!'));
+  }
 };

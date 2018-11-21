@@ -11,7 +11,7 @@
   - [x] 菜单权限
   - [ ] 功能权限
 - [x] 国际化  
-- [ ] 封装列表增删改查
+- [x] 封装列表增删改查
 - [ ] 集成 g2 chart图表
 - [ ] 集成 socket.io
 - [ ] ....(后续补充)
@@ -22,8 +22,9 @@
 - [ ] ....(后续补充)
 
 ### 教程
-1. [框架搭建](https://github.com/jiechud/umi-react/blob/master/doc/1.框架搭建.md)
-2. [国际化](https://github.com/jiechud/umi-react/blob/master/doc/2.%E5%9B%BD%E9%99%85%E5%8C%96.md)
+1. [框架搭建](https://www.cnblogs.com/qiaojie/p/9598886.html)
+2. [国际化](https://www.cnblogs.com/qiaojie/p/9673609.html)
+2. [封装列表增删改查](https://github.com/jiechud/umi-react/blob/master/doc/2.%E5%9B%BD%E9%99%85%E5%8C%96.md)
 
 ### 启动
 

@@ -1,1 +1,1 @@
-// export { default as BTable } from './b-table';
+export { default as BTable } from './b-table';

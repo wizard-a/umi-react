@@ -25,6 +25,11 @@ const adminMenu = [
       url: '/table/basic',
     }, {
       id: 22,
+      name: '基础列表2',
+      enName: 'Basic Table',
+      url: '/table/basic/basic2',
+    }, {
+      id: 23,
       name: '大列表',
       enName: 'Big Table',
       url: '/table/big',
@@ -82,6 +87,11 @@ const userMenu = [
       url: '/table/basic',
     }, {
       id: 22,
+      name: '基础列表2',
+      enName: 'Basic Table',
+      url: '/table/basic/basic2',
+    }, {
+      id: 23,
       name: '大列表',
       enName: 'Big Table',
       url: '/table/big',
