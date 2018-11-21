@@ -31,6 +31,11 @@ class Login extends React.Component {
     const intlRemember = intl.get('user.login.remember');
     return (
       <div className={styles.login}>
+        <div style={{textAlign: "center", marginBottom: '10px'}}>
+          <span style={{fontSize: '24px'}}>
+            Umi-React
+          </span>
+        </div>
         { loginErr && <Alert style={{ marginBottom: '20px' }} message='用户名密码错误' type='error' showIcon />}
         <Form onSubmit={this.handleSubmit} className='login-form'>
           <FormItem>

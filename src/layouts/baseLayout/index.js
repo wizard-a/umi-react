@@ -49,14 +49,19 @@ class BaseLayout extends React.Component {
 
   render() {
     const { menu, currLocale } = this.props;
+    const {collapsed} = this.state;
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
           collapsible
-          collapsed={this.state.collapsed}
+          collapsed={collapsed}
           onCollapse={this.onCollapse}
         >
-          <div className={styles.logo} />
+          <div className={styles.logo} style={{textAlign: 'center', lineHeight: '32px'}}>
+            <span style={{fontSize: '18px', color: '#fff'}}>
+              {collapsed ? 'U-R' : 'Umi-React' }
+            </span>
+          </div>
           <MenuComponent currLocale={currLocale} menu={menu} />
         </Sider>
         <Layout>

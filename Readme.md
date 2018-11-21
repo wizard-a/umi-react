@@ -24,7 +24,8 @@
 ### 教程
 1. [框架搭建](https://www.cnblogs.com/qiaojie/p/9598886.html)
 2. [国际化](https://www.cnblogs.com/qiaojie/p/9673609.html)
-2. [封装列表增删改查](https://github.com/jiechud/umi-react/blob/master/doc/2.%E5%9B%BD%E9%99%85%E5%8C%96.md)
+2. [封装列表增删改查](https://www.cnblogs.com/qiaojie/p/9990389.html)
+
 
 ### 启动
 
@@ -32,7 +33,13 @@
 2. yarn && yarn start
 
 
+### 框架页面截图
+* 登录页面
+
+
 
 #### 交流
 
 我建了一个QQ群，大家加进来，可以一起交流。群号 787846148
+
+wang_1991
