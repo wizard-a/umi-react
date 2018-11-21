@@ -35,7 +35,10 @@
 
 ### 框架页面截图
 * 登录页面
+  ![](https://github.com/jiechud/umi-react/blob/master/doc/resource/read/login.png)
 
+* 基础列表页面
+  ![](https://github.com/jiechud/umi-react/blob/master/doc/resource/3/local.gif)
 
 
 #### 交流
